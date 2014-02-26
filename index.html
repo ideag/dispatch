@@ -117,6 +117,24 @@ config([
 ?>
 ```
 
+Config files are treated like PHP's .ini file. If there are named sections, for instance:
+
+```
+;globals section...
+[globals]
+param1 = val1
+param2 = val2
+```
+
+Then a multi-dimensional array is created. When this is read with a statement like `$x = config('globals');`
+then the following structure is returned:
+
+```php
+array('globals' => array('param1' => 'val1', 'param2' => 'val2'))
+```
+
+Calling `config()` with no parameters resets the configuration back to an empty state.
+
 ## Routing
 Application routes are created via calls to `on($method, $path, $callback)`.
 The `$method` parameter can be a single method, an array of methods, or `*`
@@ -648,8 +666,8 @@ function dispatch()
 
 Some extra functions can be added to Dispatch via the following libraries:
 
-* [dispatch-extras](http://github.com/noodlehaus/dispatch-extras)
-* [dispatch-mustache](http://github.com/noodlehaus/dispatch-mustache)
+* [dispatch-extras](https://github.com/noodlehaus/dispatch-extras)
+* [dispatch-mustache](https://github.com/noodlehaus/dispatch-mustache)
 * [dispatch-handlebars](https://github.com/GiggleboxStudios/dispatch-handlebars)
 
 ## About the Author
@@ -665,6 +683,7 @@ The following projects served as both references and inspirations for Dispatch:
 * [ExpressJS](http://expressjs.com)
 * [Sinatra](http://sinatrarb.com)
 * [BreezePHP](http://breezephp.com)
+* [Klein.php](http://github.com/chriso/klein.php)
 
 Thanks to the following contributors for helping improve this tool :)
 
@@ -678,6 +697,7 @@ Thanks to the following contributors for helping improve this tool :)
 * Amin By [xielingwang](https://github.com/xielingwang)
 * Ross Masters [rmasters](https://github.com/rmasters)
 * scan [scan](https://github.com/scan)
+* nmcgann [nmcgann](https://github.com/nmcgann)
 
 ## LICENSE
 MIT <http://noodlehaus.mit-license.org/>
